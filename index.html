@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="favicon.png">
 <title>Constelação Sistêmica — Guia das 7 Perguntas Sistêmicas</title>
 <meta name="description" content="Baixe grátis o Guia das 7 Perguntas Sistêmicas e comece a desfazer os padrões que se repetem na sua família.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -52,6 +53,7 @@
     padding: 16px 0;
   }
   .brand { display:flex; align-items:center; gap:10px; font-weight:600; font-size:15px; }
+  .brand-logo { width:40px; height:40px; border-radius:50%; object-fit:cover; }
   .brand-mark {
     width:34px; height:34px; border-radius:50%;
     background: radial-gradient(circle at 30% 30%, var(--terracotta), var(--terracotta-dark));
@@ -80,11 +82,12 @@
   }
   .hero-badge {
     display:inline-flex; align-items:center; gap:8px;
-    background:var(--sage-dark); color:var(--terracotta);
+    background:var(--sage-dark); color:var(--white);
     padding:6px 14px; border-radius:9999px;
     font-size:12px; font-weight:600; letter-spacing:0.02em;
     margin-bottom:20px;
   }
+  .hero-badge-logo { width:20px; height:20px; border-radius:50%; object-fit:cover; }
   .hero h1 {
     font-family:var(--serif); font-weight:400;
     font-size:52px; line-height:1.08; letter-spacing:-0.5px;
@@ -143,6 +146,7 @@
     border:1px solid rgba(245,233,208,0.35); border-radius:4px;
   }
   .book-cover .tree { font-size:44px; margin-bottom:8px; }
+  .book-cover-logo { width:120px; height:120px; border-radius:50%; object-fit:cover; margin-bottom:12px; border:2px solid rgba(245,233,208,0.4); }
   .book-cover .title { font-family:var(--serif); font-size:17px; line-height:1.2; }
   .book-cover .sub { font-size:10px; color:rgba(245,233,208,0.8); margin-top:8px; letter-spacing:0.05em; }
   .book-card .author { font-size:13px; color:var(--ink-muted); margin-top:16px; }
@@ -286,7 +290,7 @@
 <nav>
   <div class="container nav-inner">
     <div class="brand">
-      <div class="brand-mark">🌳</div>
+      <img src="logo.png" alt="Integra Sistêmica" class="brand-logo">
       <span>Integra Sistêmica</span>
     </div>
     <div class="nav-links">
@@ -302,7 +306,7 @@
 <header class="hero">
   <div class="container hero-grid">
     <div>
-      <div class="hero-badge">🌳 Guia gratuito</div>
+      <div class="hero-badge"><img src="logo.png" alt="" class="hero-badge-logo"> Guia gratuito</div>
       <h1>Desfaça os padrões que <em>se repetem</em> na sua família</h1>
       <p class="hero-sub">Baixe grátis o <strong>Guia das 7 Perguntas Sistêmicas</strong> e comece a entender por que você repete os mesmos padrões de dinheiro, relacionamentos e saúde — e como olhar para eles de um jeito novo.</p>
       <div class="hero-form" id="hero-form">
@@ -326,7 +330,7 @@
     <div class="hero-visual">
       <div class="book-card">
         <div class="book-cover">
-          <div class="tree">🌳</div>
+          <img src="logo.png" alt="Integra Sistêmica" class="book-cover-logo">
           <div class="title">Constelação Familiar</div>
           <div class="sub">Desfaça os padrões que se repetem na sua família</div>
         </div>
@@ -462,7 +466,7 @@
   <div class="container">
     <div class="footer-inner">
       <div class="footer-brand">
-        <div class="brand-mark">🌳</div>
+        <img src="logo.png" alt="Integra Sistêmica" class="brand-logo">
         <span>Integra Sistêmica</span>
       </div>
       <div class="footer-links">
