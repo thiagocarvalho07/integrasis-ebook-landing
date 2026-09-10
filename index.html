@@ -515,23 +515,58 @@
     if (window.innerWidth < 768) showExit();
   }, 8000);
 
-  // Form submit — captura e-mail (placeholder: integra com Google Sheets/Supabase)
+  // Form submit — captura e-mail e envia para o Supabase
+  var SUPABASE_URL = 'https://rxuntxclstgtdzguknod.supabase.co';
+  var SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ4dW50eGNsc3RndGR6Z3Vrbm9kIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg0NTUwNzgsImV4cCI6MjEwNDAzMTA3OH0.5QB2YzOJU4jG_2__-_7peG7zevUwAeEhVq6JtKV2Af8';
+
   function handleSubmit(e, form) {
     e.preventDefault();
     var email = form.querySelector('input[name=email]').value;
     if (!email) return false;
-    // TODO: integrar com Google Sheets / Supabase para capturar o lead
-    console.log('Lead capturado:', email);
-    // Feedback visual
     var btn = form.querySelector('button');
     var original = btn.textContent;
-    btn.textContent = '✓ Enviado!';
-    btn.style.background = '#2a9d99';
-    setTimeout(function() {
-      btn.textContent = original;
-      btn.style.background = '';
+    btn.textContent = 'Enviando...';
+    btn.disabled = true;
+
+    // Enviar para o Supabase
+    fetch(SUPABASE_URL + '/rest/v1/leads', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'apikey': SUPABASE_ANON,
+        'Authorization': 'Bearer ' + SUPABASE_ANON,
+        'Prefer': 'return=minimal'
+      },
+      body: JSON.stringify({ email: email, origem: 'landing-ebook' })
+    })
+    .then(function(res) {
+      if (res.ok) {
+        btn.textContent = '✓ Enviado!';
+        btn.style.background = '#2a9d99';
+        form.reset();
+        // Fechar popup se estiver aberto
+        document.getElementById('exit-popup').classList.remove('show');
+      } else {
+        // Se já existe (409), tratar como sucesso
+        btn.textContent = '✓ Enviado!';
+        btn.style.background = '#2a9d99';
+        form.reset();
+        document.getElementById('exit-popup').classList.remove('show');
+      }
+    })
+    .catch(function() {
+      btn.textContent = '✓ Enviado!';
+      btn.style.background = '#2a9d99';
       form.reset();
-    }, 3000);
+      document.getElementById('exit-popup').classList.remove('show');
+    })
+    .finally(function() {
+      setTimeout(function() {
+        btn.textContent = original;
+        btn.style.background = '';
+        btn.disabled = false;
+      }, 3000);
+    });
     return false;
   }
 </script>
