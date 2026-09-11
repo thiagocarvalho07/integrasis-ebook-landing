@@ -55,7 +55,7 @@
       <div id="msg" class="msg"></div>
 
       <div class="terms">
-        Ao enviar, você concorda com a nossa <a href="/politica-privacidade" target="_blank">Política de Privacidade</a>. Os bônus são entregues por e-mail e ficam disponíveis para download por 7 dias. Neste site de resgate não coletamos seu número de pedido da Amazon — apenas e-mail e código de resgate.
+        Ao enviar, você concorda com a nossa <a href="/politica-privacidade" target="_blank">Política de Privacidade</a>. Após a validação do seu código, os <strong>links de download</strong> dos bônus são liberados nesta página e ficam disponíveis por 7 dias. Neste site de resgate não coletamos seu número de pedido da Amazon — apenas e-mail e código de resgate.
       </div>
 
       <div class="disclaimer">
@@ -66,7 +66,6 @@
 
 <script>
   const SUPABASE_URL = "https://rxuntxclstgtdzguknod.supabase.co";
-  const SUPABASE_ANON = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ4dW50eGNsc3RndGR6Z3Vrbm9kIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg0NTUwNzgsImV4cCI6MjEwNDAzMTA3OH0.5QB2YzOJU4jG_2__-_7peG7zevUwAeEhVq6JtKV2Af8";
 
   document.getElementById('bonus-form').addEventListener('submit', async function(e){
     e.preventDefault();
@@ -79,39 +78,33 @@
     msg.className = 'msg';
 
     try {
-      const res = await fetch(SUPABASE_URL + '/rest/v1/bonus_redemptions', {
+      // Chama a edge function resgatar-bonus: validacao server-side + anti-replay + links expiraveis
+      const res = await fetch(SUPABASE_URL + '/functions/v1/resgatar-bonus', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'apikey': SUPABASE_ANON,
-          'Authorization': 'Bearer ' + SUPABASE_ANON,
-          'Prefer': 'return=minimal'
-        },
-        body: JSON.stringify({
-          email, redemption_code: code, consent_marketing: optin,
-          consent_at: optin ? new Date().toISOString() : null,
-          expires_at: new Date(Date.now() + 7*24*3600*1000).toISOString()
-        })
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, code, consent_marketing: optin })
       });
 
-      if (res.ok) {
+      const out = await res.json().catch(()=>({}));
+
+      if (res.ok && out.success) {
         msg.className = 'msg ok';
-        msg.innerHTML = '<strong>Seus bônus estão prontos!</strong> Baixe abaixo (links válidos por 7 dias):' +
+        msg.innerHTML = '<strong>Seus bônus estão prontos!</strong> Links validos por 7 dias:' +
         '<div style="margin-top:12px;display:flex;flex-direction:column;gap:8px;">' +
-        '<a href="/Guia-7-Perguntas-Sistemicas.pdf" target="_blank" style="background:#B05A3C;color:#fff;text-align:center;padding:13px 20px;border-radius:30px;font-weight:600;text-decoration:none;font-size:15px;">Baixar Guia de Aplicação das 7 Perguntas</a>' +
-        '<a href="/checklist-7-perguntas.pdf" target="_blank" style="background:#7A8B6F;color:#fff;text-align:center;padding:13px 20px;border-radius:30px;font-weight:600;text-decoration:none;font-size:15px;">Baixar Checklist das 7 Perguntas</a>' +
+        '<a href="' + (out.links && out.links.guia) + '" target="_blank" style="background:#B05A3C;color:#fff;text-align:center;padding:13px 20px;border-radius:30px;font-weight:600;text-decoration:none;font-size:15px;">Baixar Guia de Aplicacao das 7 Perguntas</a>' +
+        '<a href="' + (out.links && out.links.checklist) + '" target="_blank" style="background:#7A8B6F;color:#fff;text-align:center;padding:13px 20px;border-radius:30px;font-weight:600;text-decoration:none;font-size:15px;">Baixar Checklist das 7 Perguntas</a>' +
         '</div>';
         document.getElementById('bonus-form').style.display = 'none';
       } else {
-        const j = await res.json().catch(()=>null);
         msg.className = 'msg err';
-        msg.innerHTML = (j && j.message) ? 'Não foi possível processar: ' + j.message : 'Não foi possível processar. Verifique o e-mail e o código e tente novamente.';
+        msg.innerHTML = out.error || 'Nao foi possivel processar. Verifique o e-mail e o codigo e tente novamente.';
       }
+      btn.disabled = false; btn.textContent = 'Baixar meus bonus';
     } catch (err) {
       msg.className = 'msg err';
-      msg.innerHTML = 'Erro de conexão. Tente novamente em instantes.';
+      msg.innerHTML = 'Erro de conexao. Tente novamente em instantes.';
+      btn.disabled = false; btn.textContent = 'Baixar meus bonus';
     }
-    btn.disabled = false; btn.textContent = 'Baixar meus bônus';
   });
 </script>
 </body>
