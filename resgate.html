@@ -96,7 +96,11 @@
 
       if (res.ok) {
         msg.className = 'msg ok';
-        msg.innerHTML = 'Obrigada! <strong>Seus bônus vão chegar por e-mail em instantes.</strong> (Guia de Aplicação + Checklist). Lembre-se: o link expira em 7 dias.';
+        msg.innerHTML = '<strong>Seus bônus estão prontos!</strong> Baixe abaixo (links válidos por 7 dias):' +
+        '<div style="margin-top:12px;display:flex;flex-direction:column;gap:8px;">' +
+        '<a href="/Guia-7-Perguntas-Sistemicas.pdf" target="_blank" style="background:#B05A3C;color:#fff;text-align:center;padding:13px 20px;border-radius:30px;font-weight:600;text-decoration:none;font-size:15px;">Baixar Guia de Aplicação das 7 Perguntas</a>' +
+        '<a href="/checklist-7-perguntas.pdf" target="_blank" style="background:#7A8B6F;color:#fff;text-align:center;padding:13px 20px;border-radius:30px;font-weight:600;text-decoration:none;font-size:15px;">Baixar Checklist das 7 Perguntas</a>' +
+        '</div>';
         document.getElementById('bonus-form').style.display = 'none';
       } else {
         const j = await res.json().catch(()=>null);
