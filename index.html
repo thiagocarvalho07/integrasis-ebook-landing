@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/png" href="favicon.png">
-<title>Constelação Sistêmica — Guia das 7 Perguntas Sistêmicas</title>
-<meta name="description" content="Baixe grátis o Guia das 7 Perguntas Sistêmicas e comece a desfazer os padrões que se repetem na sua família.">
+<title>Guia das 7 Perguntas Sistêmicas — IntegraSis</title>
+<meta name="description" content="Um guia gratuito para olhar, no seu ritmo, os padrões que se repetem na sua família — sem promessas de cura, com honestidade.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -63,12 +63,6 @@
   .nav-links { display:flex; gap:28px; align-items:center; }
   .nav-links a { color:var(--ink-soft); text-decoration:none; font-size:14px; font-weight:500; }
   .nav-links a:hover { color:var(--ink); }
-  .nav-cta {
-    background:var(--terracotta); color:#fff; border:none;
-    padding:9px 18px; border-radius:8px; font-weight:600; font-size:14px;
-    cursor:pointer; transition:background .2s;
-  }
-  .nav-cta:hover { background:var(--terracotta-dark); }
 
   /* ===== HERO ===== */
   .hero { padding: 88px 0 72px; position:relative; overflow:hidden; }
@@ -96,7 +90,7 @@
   .hero h1 em { font-style:italic; color:var(--terracotta); }
   .hero-sub {
     font-size:18px; color:var(--ink-soft); line-height:1.6;
-    max-width:520px; margin-bottom:32px;
+    max-width:540px; margin-bottom:32px;
   }
   .hero-form {
     background:var(--white); border:1px solid var(--border);
@@ -181,25 +175,22 @@
   .benefit-card h3 { font-size:17px; font-weight:700; margin-bottom:8px; }
   .benefit-card p { font-size:14px; color:var(--ink-soft); }
 
-  /* ===== PROVA SOCIAL ===== */
-  .social-proof { text-align:center; }
-  .social-proof .section-title { margin-bottom:8px; }
-  .testimonial-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:48px; }
-  .testimonial {
+  /* ===== COMUNIDADE / PROVA SOCIAL ===== */
+  .community { text-align:center; }
+  .community .section-title { margin-bottom:8px; }
+  .community-box {
+    max-width:720px; margin:40px auto 0;
     background:var(--white); border:1px solid var(--border);
-    border-radius:var(--radius); padding:28px; text-align:left;
+    border-radius:var(--radius-lg); padding:40px;
     box-shadow:var(--shadow-card);
   }
-  .testimonial .quote { font-size:15px; color:var(--ink); line-height:1.6; margin-bottom:16px; }
-  .testimonial .quote::before { content:'“'; font-family:var(--serif); font-size:28px; color:var(--terracotta); }
-  .testimonial .person { display:flex; align-items:center; gap:12px; }
-  .testimonial .avatar {
-    width:40px; height:40px; border-radius:50%;
-    background:var(--sage-dark); display:flex; align-items:center; justify-content:center;
-    font-weight:600; color:var(--terracotta); font-size:14px;
+  .community-box p { font-size:16px; color:var(--ink-soft); line-height:1.7; margin-bottom:24px; }
+  .community-cta {
+    background:var(--terracotta); color:#fff; border:none;
+    padding:14px 26px; border-radius:10px; font-weight:600; font-size:15px;
+    cursor:pointer; transition:background .2s;
   }
-  .testimonial .name { font-size:14px; font-weight:600; }
-  .testimonial .role { font-size:12px; color:var(--ink-muted); }
+  .community-cta:hover { background:var(--terracotta-dark); }
 
   /* ===== HONESTIDADE ===== */
   .honesty { background:var(--bg-alt); }
@@ -247,32 +238,11 @@
   .footer-links a:hover { color:var(--ink); }
   .footer-note { font-size:12px; color:var(--ink-muted); margin-top:16px; }
 
-  /* ===== EXIT-INTENT POPUP ===== */
-  .exit-popup {
-    position:fixed; inset:0; z-index:100;
-    display:none; align-items:center; justify-content:center;
-    background:rgba(43,38,32,0.6); backdrop-filter:blur(4px);
-  }
-  .exit-popup.show { display:flex; }
-  .exit-card {
-    background:var(--white); border-radius:var(--radius-lg);
-    padding:40px; max-width:440px; text-align:center;
-    box-shadow:var(--shadow-deep); position:relative;
-  }
-  .exit-close {
-    position:absolute; top:16px; right:16px; background:none; border:none;
-    font-size:22px; color:var(--ink-muted); cursor:pointer; line-height:1;
-  }
-  .exit-card h3 { font-family:var(--serif); font-weight:400; font-size:26px; margin-bottom:12px; }
-  .exit-card p { font-size:14px; color:var(--ink-soft); margin-bottom:20px; }
-  .exit-card .form-row { flex-direction:column; }
-  .exit-card .form-row button { width:100%; }
-
   /* ===== RESPONSIVO ===== */
   @media (max-width: 900px) {
     .hero-grid { grid-template-columns:1fr; gap:40px; }
     .hero h1 { font-size:38px; }
-    .benefits-grid, .testimonial-grid { grid-template-columns:1fr; }
+    .benefits-grid { grid-template-columns:1fr; }
     .nav-links { display:none; }
     .form-row { flex-direction:column; }
     .form-row button { width:100%; }
@@ -295,9 +265,8 @@
     </div>
     <div class="nav-links">
       <a href="#beneficios">O que você recebe</a>
-      <a href="#depoimentos">Depoimentos</a>
+      <a href="#comunidade">Caminhos que se compartilham</a>
       <a href="#faq">Perguntas</a>
-      <button class="nav-cta" onclick="document.getElementById('hero-form').scrollIntoView({behavior:'smooth'})">Baixar grátis</button>
     </div>
   </div>
 </nav>
@@ -307,24 +276,23 @@
   <div class="container hero-grid">
     <div>
       <div class="hero-badge"><img src="logo.png" alt="" class="hero-badge-logo"> Guia gratuito</div>
-      <h1>Desfaça os padrões que <em>se repetem</em> na sua família</h1>
-      <p class="hero-sub">Baixe grátis o <strong>Guia das 7 Perguntas Sistêmicas</strong> e comece a entender por que você repete os mesmos padrões de dinheiro, relacionamentos e saúde — e como olhar para eles de um jeito novo.</p>
+      <h1>Uma forma de olhar para os padrões que <em>se repetem</em> na sua família</h1>
+      <p class="hero-sub">O <strong>Guia das 7 Perguntas Sistêmicas</strong> é um material gratuito e honesto para você refletir sobre os padrões de dinheiro e relacionamentos que parecem se repetir — e, se quiser, conversar sobre eles com calma. Sem pressa, no seu ritmo.</p>
       <div class="hero-form" id="hero-form">
         <h3>Receba o guia grátis</h3>
         <p>Digite seu melhor e-mail e enviamos na hora.</p>
         <form class="form-row" onsubmit="return handleSubmit(event, this)">
           <input type="email" name="email" placeholder="Seu melhor e-mail" required>
-          <button type="submit">Quero o guia grátis</button>
+          <button type="submit">Quero o guia</button>
         </form>
         <div class="form-note">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          Sem spam. Seus dados estão seguros. Cancele quando quiser.
+          Sem spam. Você pode cancelar quando quiser.
         </div>
       </div>
       <div class="hero-trust">
-        <div class="trust-item"><strong>+4.600</strong><span>leitores na lista</span></div>
         <div class="trust-item"><strong>7</strong><span>perguntas práticas</span></div>
-        <div class="trust-item"><strong>100%</strong><span>grátis</span></div>
+        <div class="trust-item"><strong>100%</strong><span>grátis, sem cartão</span></div>
       </div>
     </div>
     <div class="hero-visual">
@@ -332,7 +300,7 @@
         <div class="book-cover">
           <img src="logo.png" alt="Integra Sistêmica" class="book-cover-logo">
           <div class="title">Constelação Familiar</div>
-          <div class="sub">Desfaça os padrões que se repetem na sua família</div>
+          <div class="sub">Uma forma de olhar para os padrões que se repetem</div>
         </div>
         <div class="author">Thiago Carvalho</div>
         <div class="price">Ebook · R$ 19,90</div>
@@ -346,63 +314,35 @@
   <div class="container">
     <div class="section-label">O que você recebe</div>
     <h2 class="section-title">Um guia prático para olhar para os seus padrões</h2>
-    <p class="section-sub">O Guia das 7 Perguntas Sistêmicas é um material direto, honesto e aplicável — sem promessas mágicas, sem pseudociência.</p>
+    <p class="section-sub">O Guia das 7 Perguntas Sistêmicas é um material direto, honesto e sem pressa — sem promessas mágicas e sem falsa ciência.</p>
     <div class="benefits-grid">
       <div class="benefit-card">
         <div class="benefit-icon">🔍</div>
-        <h3>7 perguntas que revelam</h3>
-        <p>Perguntas sistêmicas que ajudam você a enxergar os padrões que se repetem na sua família — de dinheiro a relacionamentos.</p>
+        <h3>7 perguntas para olhar</h3>
+        <p>Perguntas sistêmicas que convidam você a observar os padrões que se repetem na sua família — de dinheiro a relacionamentos.</p>
       </div>
       <div class="benefit-card">
         <div class="benefit-icon">📝</div>
         <h3>Exercícios práticos</h3>
-        <p>Passos simples para aplicar no seu dia a dia, com espaço para refletir e anotar suas descobertas.</p>
+        <p>Passos simples para refletir no seu dia a dia, com espaço para anotar o que você perceber.</p>
       </div>
       <div class="benefit-card">
         <div class="benefit-icon">🌱</div>
         <h3>Um novo olhar</h3>
-        <p>Entenda a visão sistêmica de Bert Hellinger com honestidade — o que ela pode e o que não pode fazer por você.</p>
+        <p>A forma como a visão sistêmica olha para as histórias, apresentada com honestidade sobre o que ela pode — e não pode — fazer por você.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- PROVA SOCIAL -->
-<section class="social-proof" id="depoimentos">
+<!-- COMUNIDADE (substitui os depoimentos fabricados) -->
+<section class="community" id="comunidade">
   <div class="container">
-    <div class="section-label">Quem já leu</div>
-    <h2 class="section-title">Pessoas que começaram a se enxergar</h2>
-    <div class="testimonial-grid">
-      <div class="testimonial">
-        <p class="quote">Eu sempre repetia os mesmos padrões de relacionamento e não entendia o porquê. O guia me deu um caminho para olhar para isso com mais clareza.</p>
-        <div class="person">
-          <div class="avatar">M</div>
-          <div>
-            <div class="name">Mariana</div>
-            <div class="role">Leitora do guia</div>
-          </div>
-        </div>
-      </div>
-      <div class="testimonial">
-        <p class="quote">Gostei da honestidade. Não promete cura, não promete milagre — só um jeito diferente de olhar para a minha história.</p>
-        <div class="person">
-          <div class="avatar">C</div>
-          <div>
-            <div class="name">Carlos</div>
-            <div class="role">Leitor do guia</div>
-          </div>
-        </div>
-      </div>
-      <div class="testimonial">
-        <p class="quote">As perguntas são simples, mas profundas. Me ajudaram a conversar com a minha família de um jeito que eu não tinha tentado antes.</p>
-        <div class="person">
-          <div class="avatar">A</div>
-          <div>
-            <div class="name">Ana</div>
-            <div class="role">Leitora do guia</div>
-          </div>
-        </div>
-      </div>
+    <div class="section-label">Um caminho que se faz com apoio</div>
+    <h2 class="section-title">Olhar é um caminho que se faz com apoio</h2>
+    <div class="community-box">
+      <p>A constelação sistêmica faz mais sentido quando compartilhada. Convidamos você a se juntar à nossa comunidade para trocar reflexões — e ouvir, no seu tempo, o que outras pessoas começaram a perceber.</p>
+      <button class="community-cta" onclick="document.getElementById('hero-form').scrollIntoView({behavior:'smooth'})">Receba o guia grátis</button>
     </div>
   </div>
 </section>
@@ -412,9 +352,9 @@
   <div class="container">
     <div class="honesty-box">
       <h3>Um posicionamento honesto</h3>
-      <p>A constelação familiar é uma prática sistêmica criada por Bert Hellinger. No Brasil, ela já foi usada em mais de 24 mil sessões no SUS e em mediações de conflitos no Judiciário.</p>
-      <p>Mas é importante ser claro: <strong>a constelação não tem comprovação científica</strong> e não substitui terapia, tratamento médico ou acompanhamento profissional. Este guia é um material de autoconhecimento — não uma promessa de cura.</p>
-      <p>Você merece honestidade. É por isso que este material é direto sobre o que pode e o que não pode fazer.</p>
+      <p>A constelação familiar é uma forma de observar histórias criada por Bert Hellinger. É um convite à reflexão — e nada mais do que isso.</p>
+      <p><strong>Aviso honesto:</strong> este material é uma ferramenta de reflexão, educação e autoconhecimento. Não substitui tratamento médico, psicológico ou psiquiátrico. Não promete cura, não realiza diagnóstico e não trata transtornos. Constelação familiar não é prática reconhecida pela ciência nem pelo Conselho Federal de Psicologia — apresente-a como uma forma de observar, não como causa.</p>
+      <p>Você merece honestidade. Por isso este material é direto sobre o que pode — e o que não pode — fazer por você.</p>
     </div>
   </div>
 </section>
@@ -448,9 +388,9 @@
 <!-- CTA FINAL -->
 <section class="final-cta">
   <div class="container">
-    <div class="section-label">Comece agora</div>
-    <h2 class="section-title">Dê o primeiro passo para se enxergar</h2>
-    <p class="section-sub" style="margin:0 auto;">Baixe o Guia das 7 Perguntas Sistêmicas grátis e comece a entender os padrões que se repetem na sua família.</p>
+    <div class="section-label">Comece quando quiser</div>
+    <h2 class="section-title">Dê um primeiro passo para se enxergar — no seu tempo</h2>
+    <p class="section-sub" style="margin:0 auto;">Baixe o Guia das 7 Perguntas Sistêmicas grátis e comece a olhar para os padrões que se repetem na sua família.</p>
     <div class="cta-form">
       <form class="form-row" onsubmit="return handleSubmit(event, this)">
         <input type="email" name="email" placeholder="Seu melhor e-mail" required>
@@ -475,22 +415,10 @@
         <a href="#">Cancelar inscrição</a>
       </div>
     </div>
+    <div class="footer-note">Constelação familiar: uma forma de observar, não uma promessa de cura.</div>
     <div class="footer-note">© 2026 Integra Sistêmica. Todos os direitos reservados.</div>
   </div>
 </footer>
-
-<!-- EXIT-INTENT POPUP -->
-<div class="exit-popup" id="exit-popup">
-  <div class="exit-card">
-    <button class="exit-close" onclick="closeExit()">×</button>
-    <h3>Espere! Leve o guia grátis</h3>
-    <p>As 7 Perguntas Sistêmicas que ajudam a desfazer padrões de dinheiro, relacionamentos e saúde. Grátis, direto no seu e-mail.</p>
-    <form class="form-row" onsubmit="return handleSubmit(event, this)">
-      <input type="email" name="email" placeholder="Seu melhor e-mail" required>
-      <button type="submit">Quero o guia grátis</button>
-    </form>
-  </div>
-</div>
 
 <script>
   // FAQ toggle
@@ -498,26 +426,9 @@
     el.parentElement.classList.toggle('open');
   }
 
-  // Exit-intent popup (desktop: mouse sai do topo; mobile: após 8s)
-  var exitShown = false;
-  function showExit() {
-    if (exitShown) return;
-    exitShown = true;
-    document.getElementById('exit-popup').classList.add('show');
-  }
-  function closeExit() {
-    document.getElementById('exit-popup').classList.remove('show');
-  }
-  document.addEventListener('mouseout', function(e) {
-    if (!e.relatedTarget && e.clientY < 10) showExit();
-  });
-  setTimeout(function() {
-    if (window.innerWidth < 768) showExit();
-  }, 8000);
-
   // Form submit — captura e-mail e envia para o Supabase
   var SUPABASE_URL = 'https://rxuntxclstgtdzguknod.supabase.co';
-  var SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ4dW50eGNsc3RndGR6Z3Vrbm9kIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg0NTUwNzgsImV4cCI6MjEwNDAzMTA3OH0.5QB2YzOJU4jG_2__-_7peG7zevUwAeEhVq6JtKV2Af8';
+  var SUPABASE_ANON = 'eyJhbG...2Af8';
 
   function handleSubmit(e, form) {
     e.preventDefault();
@@ -540,25 +451,14 @@
       body: JSON.stringify({ email: email, origem: 'landing-ebook' })
     })
     .then(function(res) {
-      if (res.ok) {
-        btn.textContent = '✓ Enviado!';
-        btn.style.background = '#2a9d99';
-        form.reset();
-        // Fechar popup se estiver aberto
-        document.getElementById('exit-popup').classList.remove('show');
-      } else {
-        // Se já existe (409), tratar como sucesso
-        btn.textContent = '✓ Enviado!';
-        btn.style.background = '#2a9d99';
-        form.reset();
-        document.getElementById('exit-popup').classList.remove('show');
-      }
+      btn.textContent = '✓ Enviado!';
+      btn.style.background = '#2a9d99';
+      form.reset();
     })
     .catch(function() {
       btn.textContent = '✓ Enviado!';
       btn.style.background = '#2a9d99';
       form.reset();
-      document.getElementById('exit-popup').classList.remove('show');
     })
     .finally(function() {
       setTimeout(function() {
